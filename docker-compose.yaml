@@ -4,7 +4,7 @@ services:
 
   app:
     build:
-      context: node
+      dockerfile: Dockerfile
     container_name: app
     entrypoint: dockerize -wait tcp://db:3306 -timeout 20s docker-entrypoint.sh
     networks:
@@ -40,3 +40,7 @@ services:
       - node-network
     ports:
       - 3000:3000
+
+networks:
+  node-network:
+    driver: bridge
